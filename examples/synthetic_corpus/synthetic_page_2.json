@@ -1,0 +1,23 @@
+{
+  "url": "https://example.org/protective-breeds",
+  "title": "Top Protective Dog Breeds for Home Security (SYNTHETIC)",
+  "description": "Synthetic example page for pipeline tests.",
+  "headings": [
+    "H1: Protective Dog Breeds",
+    "H2: Doberman Pinscher",
+    "H2: Akita",
+    "H2: Training Tips"
+  ],
+  "paragraphs": [
+    "SYNTHETIC SAMPLE TEXT - written for testing, not scraped from any website.",
+    "The Doberman Pinscher is fast, intelligent and devoted to its family, which makes it a classic guard dog.",
+    "The Akita is quiet and dignified but highly territorial, so it needs an experienced owner.",
+    "Consistent positive reinforcement training builds trust and keeps protective instincts under control.",
+    "Regular vet checkups, a balanced diet and enough exercise support a long, healthy life."
+  ],
+  "word_count": 91,
+  "heading_count": 4,
+  "para_count": 5,
+  "authority": 5,
+  "content": "Top Protective Dog Breeds for Home Security (SYNTHETIC) H1: Protective Dog Breeds H2: Doberman Pinscher H2: Akita H2: Training Tips SYNTHETIC SAMPLE TEXT - written for testing, not scraped from any website. The Doberman Pinscher is fast, intelligent and devoted to its family, which makes it a classic guard dog. The Akita is quiet and dignified but highly territorial, so it needs an experienced owner. Consistent positive reinforcement training builds trust and keeps protective instincts under control. Regular vet checkups, a balanced diet and enough exercise support a long, healthy life."
+}

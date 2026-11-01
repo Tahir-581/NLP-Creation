@@ -1,0 +1,104 @@
+{
+  "version": "data_available_v1",
+  "objective": "Rank keyword candidates extracted from an existing corpus of page JSON documents using interpretable corpus and structure signals.",
+  "positive_signals": {
+    "document_prevalence": {
+      "weight": 0.25,
+      "description": "Fraction of retained documents containing the candidate after consolidation."
+    },
+    "heading_presence": {
+      "weight": 0.2,
+      "description": "Normalized frequency of candidate appearance in headings across retained documents."
+    },
+    "title_presence": {
+      "weight": 0.15,
+      "description": "Normalized frequency of candidate appearance in titles or descriptions."
+    },
+    "phrase_quality": {
+      "weight": 0.15,
+      "description": "Rewards clean multi-word phrases, meaningful noun phrases, and natural surface forms."
+    },
+    "entity_bonus": {
+      "weight": 0.1,
+      "description": "Bonus when the candidate is a validated named entity or domain-lexicon match."
+    },
+    "semantic_relevance": {
+      "weight": 0.1,
+      "description": "Semantic similarity to the topic embedding or topic anchor phrase. Optional if embeddings are unavailable."
+    },
+    "method_agreement": {
+      "weight": 0.05,
+      "description": "Bonus when multiple extraction methods independently surface the same candidate."
+    }
+  },
+  "penalties": {
+    "redundancy_penalty": {
+      "weight": 0.05,
+      "description": "Penalizes candidates that are near-duplicates of stronger canonical phrases."
+    },
+    "junk_penalty": {
+      "weight": 0.05,
+      "description": "Penalizes platform text, UI phrases, or known boilerplate."
+    },
+    "genericity_penalty": {
+      "weight": 0.03,
+      "description": "Optional penalty for very broad low-information phrases such as 'dog' or 'breed'."
+    }
+  },
+  "bucket_rules": {
+    "primary_topic_term": {
+      "min_document_prevalence": 0.25,
+      "preferred_phrase_length": [
+        2,
+        4
+      ],
+      "notes": "Should be clearly tied to the topic and appear across multiple retained sources."
+    },
+    "core_entity": {
+      "min_document_prevalence": 0.1,
+      "requires_entity_or_lexicon_match": true,
+      "notes": "Allows lower prevalence when the entity is clearly topic-relevant and repeated in strong sources."
+    },
+    "supporting_phrase": {
+      "min_document_prevalence": 0.15,
+      "notes": "Descriptive or functional phrase that adds topic context."
+    },
+    "subtopic": {
+      "min_heading_presence_docs": 2,
+      "notes": "Repeated conceptual area supported by headings and/or body clusters."
+    },
+    "heading_candidate": {
+      "min_heading_presence_docs": 2,
+      "preferred_phrase_length": [
+        3,
+        8
+      ],
+      "notes": "Best used as an H2/H3 idea rather than inline keyword guidance."
+    },
+    "question_phrase": {
+      "requires_question_form": true,
+      "notes": "Derived from interrogative headings or repeated question patterns."
+    },
+    "ignore_noise": {
+      "notes": "Known junk, platform text, blocked-page text, or low-information phrases."
+    }
+  },
+  "selection_policy": {
+    "default_bucket_caps": {
+      "primary_topic_term": 10,
+      "core_entity": 20,
+      "supporting_phrase": 30,
+      "subtopic": 15,
+      "heading_candidate": 12,
+      "question_phrase": 12
+    },
+    "drop_if_below_absolute_score": 0.2,
+    "remove_near_duplicates_after_ranking": true,
+    "retain_example_sources": true
+  },
+  "confidence": {
+    "high": "8+ retained documents with low noise and low duplication",
+    "medium": "5-7 retained documents or moderate noise",
+    "low": "fewer than 5 retained documents or heavy noise / duplication"
+  }
+}
